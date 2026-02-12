@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  cpanel-ddns:
+    image: alpine:3.20
+    container_name: cpanel-ddns
+    restart: unless-stopped
+    environment:
+      WEBCALL_URL: "PASTE_YOUR_CPANEL_WEBCALL_URL_HERE"
+      CHECK_INTERVAL: "300"
+      IP_CHECK_URL: "https://api.ipify.org"
+    command: >
+      sh -c '
+        apk add --no-cache curl ca-certificates;
+        last_ip="";
+        while true; do
+          ip="$(curl -fsS "$$IP_CHECK_URL" || true)";
+          if [ -n "$$ip" ] && [ "$$ip" != "$$last_ip" ]; then
+            echo "[ddns] IP changed: $$last_ip -> $$ip ; calling webcall";
+            curl -fsS "$$WEBCALL_URL" || echo "[ddns] webcall failed";
+            last_ip="$$ip";
+          else
+            echo "[ddns] no change ($$ip)";
+          fi
+          sleep "$$CHECK_INTERVAL";
+        done
+      '
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+    - arm
+  main: cpanel-ddns
+  category: Network
+  author: "Sungvn"
+  developer: "Sungvn"
+  title:
+    en_us: "cPanel Dynamic DNS"
+  tagline:
+    en_us: "Auto-update cPanel Dynamic DNS from CasaOS"
+  description:
+    en_us: "Automatically updates your cPanel Dynamic DNS record whenever your public IP changes."
+  icon: "https://cdn.jsdelivr.net/gh/Sungvn/casaos-cpanel-ddns@main/Apps/CpanelDynamicDNS/icon.png"
+  thumbnail: "https://cdn.jsdelivr.net/gh/Sungvn/casaos-cpanel-ddns@main/Apps/CpanelDynamicDNS/thumbnail.jpg"
+  screenshots:
+    - "https://cdn.jsdelivr.net/gh/Sungvn/casaos-cpanel-ddns@main/Apps/CpanelDynamicDNS/screenshot-1.png"
+  tips:
+    before_install:
+      en_us: |
+        Go to cPanel → Dynamic DNS → create a DDNS domain.
+        Copy the generated webcall URL and paste it into WEBCALL_URL during install.
+
+        Treat the webcall URL like a password.
