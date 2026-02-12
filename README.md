@@ -21,6 +21,7 @@ It monitors your public IP address and automatically updates your cPanel Dynamic
 ## Requirements
 
 - CasaOS installed
+- Docker / Docker Compose (included with CasaOS)
 - cPanel hosting account with Dynamic DNS enabled
 
 ---
@@ -47,29 +48,77 @@ https://example.com/cpanelwebcall/xxxxxxxxxxxxxxxx
 
 ---
 
-## Installation (CasaOS)
+## Installation
 
-### Add App Store Source
+### Method 1 — Manual Installation (Recommended / Current Working Method)
 
-Open CasaOS:
+Some CasaOS versions do not support importing compose apps directly from URL. Manual installation via terminal is currently the most reliable method.
+
+#### Step 1 — SSH into your CasaOS server
+
+```bash
+ssh username@your-server-ip
+```
+
+Example:
+
+```bash
+ssh root@192.168.1.17
+```
+
+#### Step 2 — Clone repository
+
+```bash
+git clone https://github.com/Sungvn/casaos-cpanel-ddns.git
+```
+
+#### Step 3 — Enter application directory
+
+```bash
+cd casaos-cpanel-ddns/Apps/CpanelDynamicDNS
+```
+
+#### Step 4 — Start the application
+
+```bash
+docker compose up -d
+```
+
+Docker will:
+
+- Build the application container
+- Create persistent storage
+- Start the web UI service
+
+#### Step 5 — Open the web interface
+
+Open your browser:
 
 ```
-App Store → Add Source
+http://YOUR_SERVER_IP:7788
 ```
 
-Paste:
+Example:
+
+```
+http://192.168.1.17:7788
+```
+
+---
+
+### Method 2 — CasaOS App Store Installation (Future Native Support)
+
+When full native CasaOS support is available:
+
+1. Open CasaOS App Store.
+2. Add source:
 
 ```
 https://github.com/Sungvn/casaos-cpanel-ddns/archive/refs/heads/main.zip
 ```
 
----
-
-### Install App
-
-1. Find **cPanel Dynamic DNS (UI)** in the App Store.
-2. Click Install.
-3. After installation, click **Open** to launch the web interface.
+3. Install **cPanel Dynamic DNS (UI)**.
+4. Click Open.
 
 ---
 
@@ -95,6 +144,37 @@ The app:
 
 ---
 
+## Access CasaOS via DDNS Domain (Port Forwarding)
+
+If you want to access CasaOS using your DDNS domain (for example: `http://homeserver.vossen.network`), you must configure port forwarding on your router.
+
+### Example setup:
+
+Forward the following ports from your router to your CasaOS server:
+
+| External Port | Internal IP | Internal Port | Protocol |
+|---------------|-------------|---------------|----------|
+| 80            | 192.168.1.17 | 80            | TCP      |
+| 443           | 192.168.1.17 | 443           | TCP      |
+
+After port forwarding:
+
+```
+http://homeserver.vossen.network
+```
+
+will load your CasaOS dashboard instead of the local IP address.
+
+You may also access the DDNS app UI externally:
+
+```
+http://homeserver.vossen.network:7788
+```
+
+⚠️ Security Note: Exposing services directly to the internet is not always recommended. Consider using a reverse proxy (Nginx Proxy Manager, Caddy, or Traefik) and HTTPS for better security.
+
+---
+
 ## Status Dashboard
 
 The UI displays:
@@ -113,6 +193,12 @@ Logs can be viewed from inside CasaOS:
 
 ```
 App → Terminal / Logs
+```
+
+Or via SSH:
+
+```bash
+docker logs cpanel-ddns-ui
 ```
 
 ---
@@ -143,6 +229,7 @@ Settings and runtime state are stored inside the container volume:
 - Optional notification support
 - Advanced logging view
 - CasaOS native theme integration
+- One-click native CasaOS installation
 
 ---
 
