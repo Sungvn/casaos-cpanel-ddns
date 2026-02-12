@@ -1,17 +1,19 @@
-# cPanel Dynamic DNS for CasaOS
+# cPanel Dynamic DNS for CasaOS (UI)
 
-Automatically update your **cPanel Dynamic DNS (DDNS)** record directly from CasaOS.
+A CasaOS app that provides a **web dashboard** to configure and run **cPanel Dynamic DNS (DDNS)** updates.
 
-This lightweight CasaOS app monitors your public IP address and updates your cPanel Dynamic DNS entry whenever your IP changes.
+It monitors your public IP address and automatically updates your cPanel Dynamic DNS record when your IP changes. The built-in web UI allows easy configuration, status monitoring, and manual updates directly from CasaOS.
 
 ---
 
 ## Features
 
-- Automatic Dynamic DNS updates for cPanel
-- Works with CasaOS custom app stores
-- Lightweight and reliable background service
-- No API keys or login required (uses secure cPanel webcall URL)
+- Web UI dashboard inside CasaOS
+- Automatic Dynamic DNS updates
+- Manual **Test Update Now** button
+- Status panel (Current IP, Last update, Last result)
+- Persistent configuration storage
+- Lightweight and efficient
 - Supports AMD64, ARM64, and ARM devices
 
 ---
@@ -32,7 +34,7 @@ This lightweight CasaOS app monitors your public IP address and updates your cPa
 Domains → Dynamic DNS
 ```
 
-3. Create a new Dynamic DNS domain.
+3. Create a new Dynamic DNS entry.
 4. Copy the generated **webcall URL**.
 
 Example:
@@ -65,32 +67,49 @@ https://github.com/Sungvn/casaos-cpanel-ddns/archive/refs/heads/main.zip
 
 ### Install App
 
-1. Find **cPanel Dynamic DNS** in the App Store.
+1. Find **cPanel Dynamic DNS (UI)** in the App Store.
 2. Click Install.
-3. Configure:
+3. After installation, click **Open** to launch the web interface.
 
-```
-WEBCALL_URL    = your cPanel webcall URL
-CHECK_INTERVAL = 300 (recommended default)
-IP_CHECK_URL   = https://api.ipify.org
-```
+---
+
+## Configuration
+
+Inside the web UI:
+
+1. Paste your cPanel Dynamic DNS **Webcall URL**
+2. Set check interval (recommended: 300 seconds)
+3. Save settings
+4. Click **Test Update Now** to verify functionality
 
 ---
 
 ## How It Works
 
-The container:
+The app:
 
-1. Checks your public IP address.
-2. Detects changes.
-3. Calls your cPanel DDNS webcall automatically.
-4. Updates DNS only when needed.
+1. Checks your public IP address periodically.
+2. Detects changes automatically.
+3. Calls the cPanel Dynamic DNS webcall URL.
+4. Updates DNS only when required.
+
+---
+
+## Status Dashboard
+
+The UI displays:
+
+- Current detected IP address
+- Last updated IP
+- Last update time
+- HTTP response from cPanel
+- Error messages (if any)
 
 ---
 
 ## Logs
 
-View logs inside CasaOS:
+Logs can be viewed from inside CasaOS:
 
 ```
 App → Terminal / Logs
@@ -98,20 +117,32 @@ App → Terminal / Logs
 
 ---
 
+## Data Storage
+
+Settings and runtime state are stored inside the container volume:
+
+```
+/config/settings.json
+/config/state.json
+```
+
+---
+
 ## Security
 
 - No credentials stored.
-- Uses cPanel's secure webcall mechanism.
-- Only updates when IP changes.
+- Uses secure cPanel webcall URL.
+- Webcall URL is masked inside UI.
+- Only updates DNS when IP changes.
 
 ---
 
 ## Roadmap
 
-- Built-in UI dashboard
-- Status panel (current IP / last update)
-- Manual update button
-- Enhanced logging
+- Enhanced dashboard styling
+- Optional notification support
+- Advanced logging view
+- CasaOS native theme integration
 
 ---
 
