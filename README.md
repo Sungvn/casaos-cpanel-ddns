@@ -63,7 +63,7 @@ ssh username@your-server-ip
 Example:
 
 ```bash
-ssh root@192.168.1.17
+ssh root@192.168.1.xx
 ```
 
 #### Step 2 — Clone repository
@@ -101,7 +101,7 @@ http://YOUR_SERVER_IP:7788
 Example:
 
 ```
-http://192.168.1.17:7788
+http://192.168.1.xx:7788
 ```
 
 ---
@@ -146,7 +146,7 @@ The app:
 
 ## Access CasaOS via DDNS Domain (Port Forwarding)
 
-If you want to access CasaOS using your DDNS domain (for example: `http://homeserver.vossen.network`), you must configure port forwarding on your router.
+If you want to access CasaOS using your DDNS domain (for example: `http://homeserver.domain.ext`), you must configure port forwarding on your router.
 
 ### Example setup:
 
@@ -154,8 +154,8 @@ Forward the following ports from your router to your CasaOS server:
 
 | External Port | Internal IP | Internal Port | Protocol |
 |---------------|-------------|---------------|----------|
-| 80            | 192.168.1.17 | 80            | TCP      |
-| 443           | 192.168.1.17 | 443           | TCP      |
+| 80            | 192.168.1.xx | 80            | TCP      |
+| 443           | 192.168.1.xx | 443           | TCP      |
 
 After port forwarding:
 
@@ -168,7 +168,7 @@ will load your CasaOS dashboard instead of the local IP address.
 You may also access the DDNS app UI externally:
 
 ```
-http://homeserver.vossen.network:7788
+http://homeserver.domain.ext:7788
 ```
 
 ⚠️ Security Note: Exposing services directly to the internet is not always recommended. Consider using a reverse proxy (Nginx Proxy Manager, Caddy, or Traefik) and HTTPS for better security.
