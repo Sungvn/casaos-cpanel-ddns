@@ -160,7 +160,7 @@ Forward the following ports from your router to your CasaOS server:
 After port forwarding:
 
 ```
-http://homeserver.vossen.network
+http://homeserver.domain.ext
 ```
 
 will load your CasaOS dashboard instead of the local IP address.
