@@ -31,11 +31,11 @@ x-casaos:
   author: "Sungvn"
   developer: "Sungvn"
   title:
-    en_us: "cPanel Dynamic DNS (UI)"
+    en_us: "cPanel - Plesk DDNS (UI)"
   tagline:
     en_us: "Dynamic DNS updater with web dashboard"
   description:
-    en_us: "A CasaOS app with a web UI to configure and run cPanel Dynamic DNS updates (auto-update + test button + status)."
+    en_us: "A CasaOS app with a web UI to configure and run cPanel or Plesk Dynamic DNS updates (auto-update + test button + status)."
   icon: "https://cdn.jsdelivr.net/gh/Sungvn/casaos-cpanel-ddns@main/Apps/CpanelDynamicDNS/icon.png"
   thumbnail: "https://cdn.jsdelivr.net/gh/Sungvn/casaos-cpanel-ddns@main/Apps/CpanelDynamicDNS/thumbnail.jpg"
   screenshots:
@@ -43,7 +43,7 @@ x-casaos:
   tips:
     before_install:
       en_us: |
-        After install, open the app UI and paste your cPanel Dynamic DNS webcall URL.
+        After install, open the app UI and paste your cPanel or Plesk Dynamic DNS webcall URL.
         Treat the webcall URL like a password.
   port_map: "7788"
   scheme: "http"
