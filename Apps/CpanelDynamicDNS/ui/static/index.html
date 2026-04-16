@@ -19,6 +19,25 @@
       border-bottom: 1px solid rgba(255, 255, 255, .08)
     }
 
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
     h1 {
       margin: 0;
       font-size: 18px
@@ -133,14 +152,20 @@
           Paste your cPanel or Plesk <b>Dynamic DNS webcall URL</b>. Treat it like a password.
         </div>
 
-        <label>cPanel / Plesk Webcall URL</label>
-        <input id="webcall_url" placeholder="https://" />
+        <div class="form-group">
+          <label>cPanel / Plesk Webcall URL</label>
+          <input id="webcall_url" placeholder="https://" />
+        </div>
 
-        <label>IP Check URL</label>
-        <input id="ip_check_url" placeholder="https://api.ipify.org" />
+        <div class="form-group">
+          <label>IP Check URL</label>
+          <input id="ip_check_url" placeholder="https://api.ipify.org" />
+        </div>
 
-        <label>Check Interval (seconds)</label>
-        <input id="check_interval" type="number" min="30" step="1" />
+        <div class="form-group">
+          <label>Check Interval (seconds)</label>
+          <input id="check_interval" type="number" min="30" step="1" />
+        </div>
 
         <label style="margin-top:12px">
           <input id="enabled" type="checkbox" style="width:auto;vertical-align:middle;margin-right:8px" />
