@@ -1,8 +1,10 @@
-# cPanel Dynamic DNS for CasaOS (UI)
+# cPanel & Plesk Dynamic DNS for CasaOS (UI)
 
-A CasaOS app that provides a **web dashboard** to configure and run **cPanel Dynamic DNS (DDNS)** updates.
+A CasaOS app that provides a **web dashboard** to configure and run **cPanel or Plesk Dynamic DNS (DDNS)** updates.
 
-It monitors your public IP address and automatically updates your cPanel Dynamic DNS record when your IP changes. The built-in web UI allows easy configuration, status monitoring, and manual updates directly from CasaOS.
+## Plesk users refer to https://github.com/Sungvn/casaos-plesk-ddns , Installation required.
+
+It monitors your public IP address and automatically updates your cPanel or Plesk Dynamic DNS record when your IP changes. The built-in web UI allows easy configuration, status monitoring, and manual updates directly from CasaOS.
 
 ---
 
@@ -23,6 +25,8 @@ It monitors your public IP address and automatically updates your cPanel Dynamic
 - CasaOS installed
 - Docker / Docker Compose (included with CasaOS)
 - cPanel hosting account with Dynamic DNS enabled
+- Plesk hosting account with custom Dynamic DNS enabled
+## Setup refer to (https://github.com/Sungvn/casaos-plesk-ddns)
 
 ---
 
@@ -242,5 +246,5 @@ MIT
 ## Author
 
 Created by Sungvn  
-Developer at VossenNetwork  
+Developer at vossenNetwork  
 https://vossen.network
