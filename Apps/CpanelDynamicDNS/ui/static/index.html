@@ -134,7 +134,7 @@
         </div>
 
         <label>cPanel / Plesk Webcall URL</label>
-        <input id="webcall_url" placeholder="https://example.com/cpanelwebcall/yourtoken" />
+        <input id="webcall_url" placeholder="https://" />
 
         <label>IP Check URL</label>
         <input id="ip_check_url" placeholder="https://api.ipify.org" />
@@ -183,7 +183,9 @@
 
     <div class="card" style="margin-top:18px">
       <div class="muted">
-        Tip: Your cPanel webcall URL looks like <code>https://yourdomain.tld/cpanelwebcall/...</code>.
+        Tip: Your cPanel webcall URL looks like <code>https://yourdomain.tld/cpanelwebcall/yourtoken</code>.<br>
+        Tip: Your Plesk webcall URL looks like
+        <code>https://ddns.example.com/update.php?key=your-secret-key&host=homeserver.example.com</code>.<br>
         If you see an error, check that the URL is correct and reachable from your CasaOS server.
       </div>
     </div>
