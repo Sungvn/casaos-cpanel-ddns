@@ -218,10 +218,10 @@ Settings and runtime state are stored inside the container volume:
 
 ---
 
-## Security
+## 🔐 Security Notes
 
 - No credentials stored.
-- Uses secure cPanel webcall URL.
+- Uses secure cPanel or Plesk webcall URL.
 - Webcall URL is masked inside UI.
 - Only updates DNS when IP changes.
 
@@ -237,7 +237,7 @@ Settings and runtime state are stored inside the container volume:
 
 ---
 
-## License
+## 📜 License
 
 MIT
 
